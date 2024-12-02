@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carro.carro.dtos.CarroRequest;
 import com.carro.carro.dtos.CarroResponse;
 import com.carro.carro.entities.Carro;
 import com.carro.carro.mappers.CarroMapper;
@@ -31,4 +32,10 @@ public class CarroService {
         );
         return CarroMapper.toDTO(carro);
     }
+
+    public CarroResponse save(CarroRequest carro){
+        Carro newCarro = repository.save(CarroMapper.toEntity(carro));
+        return CarroMapper.toDTO(newCarro);
+    }
+    
 }
