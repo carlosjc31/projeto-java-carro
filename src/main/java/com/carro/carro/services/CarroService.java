@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.carro.carro.dtos.CarroResponse;
+import com.carro.carro.entities.Carro;
 import com.carro.carro.mappers.CarroMapper;
 import com.carro.carro.repositories.CarroRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CarroService {
@@ -20,5 +23,12 @@ public class CarroService {
                          .stream()
                          .map(c -> CarroMapper.toDTO(c))
                          .collect(Collectors.toList());
+    }
+
+    public CarroResponse getCarroById(Long id){
+        Carro carro = repository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Carro não encontrado")
+        );
+        return CarroMapper.toDTO(carro);
     }
 }
