@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record CarroRequest(
+    
     @NotBlank(message = "O campo marca é obrigatório")
     @Size(min = 3, message = "O campo marca deve ter no mínimo 3 caracteres")
     String marca,

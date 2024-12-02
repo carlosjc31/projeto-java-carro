@@ -16,7 +16,12 @@ public class Carro {
     private int ano;
     private String cor;
 
-
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getMarca() {
         return marca;
     }
@@ -64,5 +69,7 @@ public class Carro {
             return false;
         return true;
     }
+
     
+
 }
