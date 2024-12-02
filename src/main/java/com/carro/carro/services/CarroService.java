@@ -33,9 +33,22 @@ public class CarroService {
         return CarroMapper.toDTO(carro);
     }
 
-    public CarroResponse save(CarroRequest carro){
-        Carro newCarro = repository.save(CarroMapper.toEntity(carro));
-        return CarroMapper.toDTO(newCarro);
+    public void update(CarroRequest carro, Long id){
+        Carro aux = repository.getReferenceById(id);
+
+        aux.setMarca(carro.marca());
+        aux.setModelo(carro.modelo());
+        aux.setAno(carro.ano());
+        aux.setCor(carro.cor());
     }
-    
+
+    public void delete (Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }
+        else{
+            throw new EntityNotFoundException("Carro não encontrado");
+        }
+    }
+
 }
