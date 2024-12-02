@@ -51,4 +51,9 @@ public class CarroService {
         }
     }
 
+    public CarroResponse save(CarroRequest carro){
+        Carro newCarro = repository.save(CarroMapper.toEntity(carro));
+        return CarroMapper.toDTO(newCarro);
+    }
+
 }
